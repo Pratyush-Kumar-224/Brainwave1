@@ -6,13 +6,13 @@ class ATM:
         self.balance = initial_balance
 
     def check_balance(self):
-        return f"Your current balance is: ${self.balance:.2f}"
+        return f"Your current balance is: Rs. {self.balance:.2f}"
 
     def deposit(self, amount):
         if amount <= 0:
             return "Deposit amount must be positive!"
         self.balance += amount
-        return f"${amount:.2f} deposited successfully! {self.check_balance()}"
+        return f"Rs. {amount:.2f} deposited successfully! {self.check_balance()}"
 
     def withdraw(self, amount):
         if amount <= 0:
@@ -20,7 +20,7 @@ class ATM:
         if amount > self.balance:
             return "Insufficient funds!"
         self.balance -= amount
-        return f"${amount:.2f} withdrawn successfully! {self.check_balance()}"
+        return f"Rs. {amount:.2f} withdrawn successfully! {self.check_balance()}"
 
     def exit(self):
         return "Thank you for using the ATM. Goodbye!"
@@ -31,18 +31,18 @@ class ATMInterface:
         self.root = root
         root.title("ATM Interface")
 
-        # Balance display
-        self.balance_label = tk.Label(root, text="Your Balance: $0.00", font=('Helvetica', 16))
+        # Balance
+        self.balance_label = tk.Label(root, text="Your Balance: Rs. 0.00", font=('Helvetica', 16))
         self.balance_label.grid(row=0, column=0, columnspan=2, pady=10)
 
-        # Amount entry
+        # Entry/Exit
         self.amount_label = tk.Label(root, text="Amount", font=('Helvetica', 12))
         self.amount_label.grid(row=1, column=0, pady=5)
         
         self.amount_entry = tk.Entry(root, font=('Helvetica', 12))
         self.amount_entry.grid(row=1, column=1, pady=5)
 
-        # Buttons
+        # Button
         self.check_balance_button = tk.Button(root, text="Check Balance", font=('Helvetica', 12), command=self.check_balance, width=15)
         self.check_balance_button.grid(row=2, column=0, pady=5)
 
@@ -55,7 +55,7 @@ class ATMInterface:
         self.exit_button = tk.Button(root, text="Exit", font=('Helvetica', 12), command=self.exit, width=15)
         self.exit_button.grid(row=3, column=1, pady=5)
 
-        # Result display
+        # Result
         self.result_label = tk.Label(root, text="", font=('Helvetica', 12), fg='blue')
         self.result_label.grid(row=4, column=0, columnspan=2, pady=10)
 
@@ -84,7 +84,7 @@ class ATMInterface:
         self.root.quit()
 
     def update_balance_label(self):
-        self.balance_label.config(text=f"Your Balance: ${self.atm.balance:.2f}")
+        self.balance_label.config(text=f"Your Balance: Rs. {self.atm.balance:.2f}")
 
     def get_amount(self):
         try:
